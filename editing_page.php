@@ -1,6 +1,25 @@
 <?php
+session_start();
 $userId = explode('Edit ', $_POST['edit']);
 $editUser = $userId[1];
+$_SESSION['editUser'] = $editUser;
+$firstName;
+$lastName;
+$emailAddress;
+
+$userInformationFile = fopen('user_information.txt', 'r');
+for ($i = 1; !feof($userInformationFile); $i++)
+{
+    $usersInformation = fgets($userInformationFile);
+    $userInformation = explode('|', $usersInformation);
+    if ($i == $editUser)
+    {
+        $firstName = $userInformation[0];
+        $lastName = $userInformation[1];
+        $emailAddress = $userInformation[2];
+    }
+}
+
 ?>
 <html>
 <head>
@@ -47,12 +66,29 @@ $editUser = $userId[1];
         width: 30vw;
     }
     .dashboard {
+        padding-left: 22.5vw;
         width: 70vw;
+        text-align: center;
     }
     .dashboard_header {
         font-family: 'Monoton', cursive;
         font-size: 50px;
         vertical-align: top;
+    }
+    fieldset {
+        background-color: rgba(0, 0, 0, 0.75);
+        width: 25vw;
+    }
+    .subheader {
+        font-size: 50px;
+        text-align: center;
+    }
+    .label{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 25px;
+    }
+    input {
+        width: 100%;
     }
 </style>
 <body>
@@ -85,13 +121,30 @@ $editUser = $userId[1];
                 <hr>
             </td>
             <td class="dashboard">
-                <form action="">
+                <form action="edit.php" method="POST">
                     <fieldset>
-                        <p>User ID</p>
-                        <label for="edit.php"></label>
-                        <input type="text" name="" id="">
-                        <input type="email" name="" id="">
-                        <input type="submit" value="">
+                        <p class="subheader">Edit</p>
+                        <hr>
+                        <p class="label">User ID:</p>
+                        <hr>
+                        <input type="number" name="userID" id="user_id"  value=<?php echo $editUser ?>>
+                        <hr>
+                        <label for="edit.php" class="label">First name</label>
+                        <hr>
+                        <input type="text" name="firstName" id="first_name" value=<?php echo $firstName ?>>
+                        <br>
+                        <hr>
+                        <label for="last_name" class="label">Last name</label>
+                        <hr>
+                        <input type="text" name="lastName" id="last_name" value=<?php echo $lastName ?>>
+                        <br>
+                        <hr>
+                        <label for="emailAddress" class="label">Email Address</label>
+                        <hr>
+                        <input type="email" name="emailAddress" id="email_address" value=<?php echo $emailAddress ?>>
+                        <br>
+                        <hr>
+                        <input type="submit" value="Confirm edit">
                     </fieldset>
                 </form>
             </td>

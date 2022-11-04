@@ -8,6 +8,14 @@ if (!isset($_SESSION['lastName']))
 {
     $_SESSION['lastName'] = "";
 }
+if (!isset($_SESSION['gender']))
+{
+    $_SESSION['gender'] = "";
+}
+if (!isset($_SESSION['dateOfBirth']))
+{
+    $_SESSION['dateOfBirth'] = "";
+}
 if (!isset($_SESSION['emailAddress']))
 {
     $_SESSION['emailAddress'] = "";
@@ -48,12 +56,13 @@ if (!isset($_SESSION['confirmPassword']))
         font-size: 25px;
     }
     fieldset {
-        background-color: #000000;
+        background-color: rgba(0, 0, 0, 0.75);
         display: inline-block;
+        font-family: 'Open Sans', sans-serif;
         width: 25%;
         text-align: left;
     }
-    input[type = text], [type = email], [type = password] {
+    input[type = text], [type = email], [type = date], [type = password] {
         height: 25px;
         width: 100%;
     }
@@ -63,11 +72,18 @@ if (!isset($_SESSION['confirmPassword']))
         font-size: 25px;
         height: 50px;
         text-align: center;
+        width: 100%;
+    }
+    input[type = submit]:hover {
+        border: 5px solid white;
+        background-color: #000000;
+        color: white;
     }
     .heading {
         font-size: 75px;
     }
     .subheading {
+        font-family: 'Monoton', cursive;
         font-size: 50px;
         text-align: center;
     }
@@ -87,98 +103,124 @@ if (!isset($_SESSION['confirmPassword']))
 <body>
     <table>
         <tr>
-            <td class="heading"><a href="index.php">GARDENERS VALLEY</a>
+            <td class="heading">
+                <a href="index.php">GARDENERS VALLEY</a>
                 <hr>
             </td>
-            </tr>
-            <tr>
-        <td>
-        <form action="registration_validation.php" method="POST">
-        <fieldset>
-            <p class="subheading">REGISTRATION</p>
-            <hr>
-            <label for="first_name">First name</label>
-            <br>
-            <hr>
-            <input type="text" name="firstName" id="first_name" value="<?php echo $_SESSION['firstName'] ?>">
-            <br>
-            <?php
-            if (isset($_SESSION['emptyFirstName'])) {
-                echo "<p class='error_message'>First name is empty.</p>";
-                unset($_SESSION['emptyFirstName']);
-            }
-            ?>
-            <hr>
-            <label for="last_name">Last name</label>
-            <br>
-            <hr>
-            <input type="text" name="lastName" id="last_name" value="<?php echo $_SESSION['lastName'] ?>">
-            <br>
-            <?php
-            if (isset($_SESSION['emptyLastName'])) {
-                echo "<p class='error_message'>Last name is empty.</p>";
-                unset($_SESSION['emptyLastName']);
-            }
-            ?>
-            <hr>
-            <label for="email_address">Email address</label>
-            <br>
-            <hr>
-            <input type="email" name="emailAddress" id="email_address" value="<?php echo $_SESSION['emailAddress'] ?>">
-            <br>
-            <?php
-            if (isset($_SESSION['emptyEmailAddress'])) {
-                echo "<p class='error_message'>Email address is empty.</p>";
-                unset($_SESSION['emptyEmailAddress']);
-            }
-            ?>
-            <hr>
-            <label for="password">Password</label>
-            <br>
-            <hr>
-            <input type="password" name="password" id="password" value="<?php echo $_SESSION['password'] ?>">
-            <br>
-            <hr>
-            <input type="checkbox" name="showPassword" id="show_password" onclick="myFunction()">
-            <label for="show_password" class="show_password">Show password</label>
-            <?php
-            if (isset($_SESSION['emptyPassword'])) {
-                echo "<p class='error_message'>Password is empty.</p>";
-                unset($_SESSION['emptyPassword']);
-            }
-            ?>
-            <hr>
-            <label for="password">Confirm password</label>
-            <br>
-            <hr>
-            <input type="password" name="confirmPassword" id="confirm_password" value="<?php echo $_SESSION['confirmPassword'] ?>">
-            <br>
-            <?php
-            if (isset($_SESSION['emptyConfirmPassword'])) {
-                echo "<p class='error_message'>Confirm password is empty.</p>";
-                unset($_SESSION['emptyConfirmPassword']);
-            }
-            if (isset($_SESSION['unmatchedPassword'])) {
-                echo "<p class='error_message'>Password does not match</p>";
-                unset($_SESSION['unmatchedPassword']);
-            }
-            ?>
-            <hr>
-            <input type="submit" value="Register">
-        </fieldset>
-    </form>
-        </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="registration_validation.php" method="POST">
+                    <fieldset>
+                        <p class="subheading">REGISTRATION</p>
+                        <hr>
+                        <label for="first_name">First name : </label>
+                        <hr>
+                        <input type="text" name="firstName" id="first_name" value="<?php echo $_SESSION['firstName'] ?>">
+                        <?php
+                        if (isset($_SESSION['emptyFirstName'])) {
+                            echo "<p class='error_message'>First name is empty.</p>";
+                            unset($_SESSION['emptyFirstName']);
+                        }
+                        if (isset($_SESSION['invalidFirstName'])) {
+                            echo "<p class='error_message'>Invalid first name.</p>";
+                            unset($_SESSION['invalidFirstName']);
+                        }
+                        ?>
+                        <hr>
+                        <label for="last_name">Last name : </label>
+                        <hr>
+                        <input type="text" name="lastName" id="last_name" value="<?php echo $_SESSION['lastName'] ?>">
+                        <?php
+                        if (isset($_SESSION['emptyLastName'])) {
+                            echo "<p class='error_message'>Last name is empty.</p>";
+                            unset($_SESSION['emptyLastName']);
+                        }
+                        if (isset($_SESSION['invalidLastName'])) {
+                            echo "<p class='error_message'>Invalid last name.</p>";
+                            unset($_SESSION['invalidLastName']);
+                        }
+                        ?>
+                        <hr>
+                        <label>Gender : </label>
+                        <hr>
+                        <input type="radio" name="gender" id="male" value="Male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female" value="Female">
+                        <label for="female">Female</label>
+                        <?php
+                        if (isset($_SESSION['emptyGender'])) {
+                            echo "<p class='error_message'>Gender is empty.</p>";
+                            unset($_SESSION['emptyGender']);
+                        }
+                        ?>
+                        <hr>
+                        <label for="date_of_birth">Date of birth : </label>
+                        <hr>
+                        <input type="date" name="dateOfBirth" id="date_of_birth">
+                        <?php
+                        if (isset($_SESSION['emptyDateOfBirth'])) {
+                            echo "<p class='error_message'>Date of birth is empty.</p>";
+                            unset($_SESSION['emptyDateOfBirth']);
+                        }
+                        ?>
+                        <hr>
+                        <label for="email_address">Email address : </label>
+                        <hr>
+                        <input type="email" name="emailAddress" id="email_address" value="<?php echo $_SESSION['emailAddress'] ?>">
+                        <?php
+                        if (isset($_SESSION['emptyEmailAddress'])) {
+                            echo "<p class='error_message'>Email address is empty.</p>";
+                            unset($_SESSION['emptyEmailAddress']);
+                        }
+                        ?>
+                        <hr>
+                        <label for="password">Password : </label>
+                        <hr>
+                        <input type="password" name="password" id="password" value="<?php echo $_SESSION['password'] ?>">
+                        <hr>
+                        <input type="checkbox" name="showPassword" id="show_password" onclick="myFunction()">
+                        <label for="show_password" class="show_password">Show password</label>
+                        <?php
+                        if (isset($_SESSION['emptyPassword'])) {
+                            echo "<p class='error_message'>Password is empty.</p>";
+                            unset($_SESSION['emptyPassword']);
+                        }
+                        if (isset($_SESSION['weakPassword'])) {
+                            echo "<p class='error_message'>Password must be 6 characters long.</p>";
+                            unset($_SESSION['weakPassword']);
+                        }
+                        ?>
+                        <hr>
+                        <label for="password">Confirm password : </label>
+                        <hr>
+                        <input type="password" name="confirmPassword" id="confirm_password" value="<?php echo $_SESSION['confirmPassword'] ?>">
+                        <?php
+                        if (isset($_SESSION['emptyConfirmPassword'])) {
+                            echo "<p class='error_message'>Confirm password is empty.</p>";
+                            unset($_SESSION['emptyConfirmPassword']);
+                        }
+                        if (isset($_SESSION['unmatchedPassword'])) {
+                            echo "<p class='error_message'>Password does not match</p>";
+                            unset($_SESSION['unmatchedPassword']);
+                        }
+                        ?>
+                        <hr>
+                        <input type="submit" value="Register">
+                    </fieldset>
+                </form>
+            </td>
         </tr>
     </table>
     <script>
         function myFunction() {
-  var password = document.getElementById("password");
-  if (password.type === "password") {
-    password.type = "text";
-  } else {
-    password.type = "password";
-  }
-}
+            var password = document.getElementById("password");
+            if (password.type === "password") {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        }
     </script>
 </body>
 </html>

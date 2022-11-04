@@ -1,47 +1,76 @@
 <?php
+include_once "empty_input_validation.php";
+include_once "name_validation.php";
+include_once "password_validation.php";
+
 session_start();
+
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
+$gender = $_POST['gender'];
+$dateOfBirth = $_POST['dateOfBirth'];
 $emailAddress = $_POST['emailAddress'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirmPassword'];
-$emptyInput = false;
+$invalidInput = false;
 
 $_SESSION['firstName'] = $firstName;
 $_SESSION['lastName'] = $lastName;
+$_SESSION['gender'] = $gender;
+$_SESSION['dateOfBirth'] = $dateOfBirth;
 $_SESSION['emailAddress'] = $emailAddress;
 $_SESSION['password'] = $password;
 $_SESSION['confirmPassword'] = $confirmPassword;
 
-if ($firstName == "") {
+if (checkInput($firstName)) {
     $_SESSION['emptyFirstName'] = true;
-    $emptyInput = true;
+    $invalidInput = true;
 }
-if ($lastName == "") {
+if (checkInput($lastName)) {
     $_SESSION['emptyLastName'] = true;
-    $emptyInput = true;
+    $invalidInput = true;
 }
-if ($emailAddress == "") {
+if (checkInput($gender)) {
+    $_SESSION['emptyGender'] = true;
+    $invalidInput = true;
+}
+if (checkInput($dateOfBirth)) {
+    $_SESSION['emptyDateOfBirth'] = true;
+    $invalidInput = true;
+}
+if (checkInput($emailAddress)) {
     $_SESSION['emptyEmailAddress'] = true;
-    $emptyInput = true;
+    $invalidInput = true;
 }
-if ($password == "") {
+if (checkInput($password)) {
     $_SESSION['emptyPassword'] = true;
-    $emptyInput = true;
+    $invalidInput = true;
 }
-if ($confirmPassword == "") {
+if (checkInput($confirmPassword)) {
     $_SESSION['emptyConfirmPassword'] = true;
-    $emptyInput = true;
+    $invalidInput = true;
 }
-if ($emptyInput) {
-    header('location: registration.php');
-} else if ($password != $confirmPassword) {
-        echo "Hello";
-        $_SESSION['unmatchedPassword'] = true;
-        header('location: registration.php');
+if (checkName($firstName)) {
+    $_SESSION['invalidFirstName'] = true;
+    $invalidInput = true;
+}
+if (checkName($lastName)) {
+    $_SESSION['invalidLastName'] = true;
+    $invalidInput = true;
+}
+if (checkPassword($password)) {
+    $_SESSION['weakPassword'] = true;
+    $invalidInput = true;
+}
+if ($password != $confirmPassword) {
+    $_SESSION['unmatchedPassword'] = true;
+    $invalidInput = true;
+}
+if ($invalidInput) {
+    $invalidInput = true;
 } else {
     $userInformationFile = fopen('user_information.txt', 'a');
-    $userInformation = $firstName."|".$lastName."|".$emailAddress."|".$password;
+    $userInformation = $firstName."|".$lastName."|".$gender."|".$dateOfBirth."|".$emailAddress."|".$password;
     fwrite($userInformationFile, $userInformation);
     header('location: home.php');
 }

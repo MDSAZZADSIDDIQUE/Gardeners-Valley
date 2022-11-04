@@ -148,6 +148,10 @@ session_start();
                         <form action="editing_page.php" method="post">
                             <?php
                             echo "<td><input type='submit' value='Edit {$i}' name='edit' class='edit_button'></td>";
+                            ?>
+                        </form>
+                        <form action="delete.php" method="post">
+                            <?php
                             echo "<td><input type='submit' value='Delete {$i}' name='delete' class='delete_button'></td>";
                             ?>
                         </form>

@@ -1,4 +1,1 @@
-Sazzad|Siddique|Ashesh@gmail.com|admin
-Ashesh|Deb|Ashesh@gmail.com|ashesh
-Likhon|Siddique|Likhon@gmail.com|Likhon
-Shithi|Hassan|Shithi@gmail.com|Hassan
+Sazzad|Siddique|Siddique@gmail.com|Likon
