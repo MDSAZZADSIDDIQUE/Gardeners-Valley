@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,6 +62,11 @@
     .forgottenPassword {
         font-family: 'Open Sans', sans-serif;
     }
+    .error_message {
+        color: red;
+        font-family: 'Open Sans', sans-serif;
+        text-align: left;
+    }
 </style>
 <body>
     <table>
@@ -66,7 +75,7 @@
         </tr>
         <tr>
             <td>
-                <form action="">
+                <form action="log_in_verification.php" method="post">
                     <fieldset>
                         <p class="subheading">Log in</p>
                         <hr>
@@ -81,6 +90,10 @@
                         <input type="checkbox" name="showPassword" id="show_password" onclick="myFunction()">
                         <label for="show_password" class="show_password">Show password</label>
                         <hr>
+                        <?php if (isset($_SESSION['unmatchedInformations'])) {
+                            echo "<p class='error_message'>Email address or password does not match.</p>";
+                            unset($_SESSION['unmatchedInformations']);
+                        } ?>
                         <a href="" class="forgottenPassword">Forgotten password?</a>
                         <hr>
                         <input type="submit" value="Log in">
@@ -91,13 +104,13 @@
     </table>
     <script>
         function myFunction() {
-  var password = document.getElementById("password");
-  if (password.type === "password") {
-    password.type = "text";
-  } else {
-    password.type = "password";
-  }
-}
+        var password = document.getElementById("password");
+        if (password.type === "password") {
+          password.type = "text";
+        } else {
+          password.type = "password";
+        }
+        }
     </script>
 </body>
 </html>

@@ -68,11 +68,31 @@ session_start();
         border: 1px solid;
         height: 10px;
     }
-    .edit_link {
-        color: rgb(0, 0, 255);
+    .edit_button {
+        background-color: white;
+        font-size: 30px;
+        border-radius: 8px;
+        color: blue;
+        border: 2px solid blue;
+        transition-duration: 0.4s;
+        width: 70px;
     }
-    .delete_link {
-        color: rgb(255, 0, 0);
+    .edit_button:hover {
+        background-color: blue;
+        color: white;
+    }
+    .delete_button {
+        background-color: white;
+        font-size: 30px;
+        border-radius: 8px;
+        color: red;
+        border: 2px solid red;
+        transition-duration: 0.4s;
+        width: 100px;
+    }
+    .delete_button:hover {
+        background-color: red;
+        color: white;
     }
 </style>
 <body>
@@ -124,8 +144,14 @@ session_start();
                         {
                             echo "<td class='dashboard_table_data'>{$userInformation[$j]}</td>";
                         }
-                        echo "<td><a href='' class='edit_link' id='edit_link'>Edit{$i}</a><td>";
-                        echo "<td><a href='' class='delete_link'>Delete</a><td>";
+                        ?>
+                        <form action="editing_page.php" method="post">
+                            <?php
+                            echo "<td><input type='submit' value='Edit {$i}' name='edit' class='edit_button'></td>";
+                            echo "<td><input type='submit' value='Delete {$i}' name='delete' class='delete_button'></td>";
+                            ?>
+                        </form>
+                        <?php
                         echo "</tr>";
                     }
                     ?>

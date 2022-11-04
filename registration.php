@@ -42,7 +42,7 @@ if (!isset($_SESSION['confirmPassword']))
         font-family: 'Monoton', cursive;
         height: 100vh;
         text-align: center;
-        width: 100%; 
+        width: 100%;
     }
     td {
         font-size: 25px;
@@ -93,7 +93,7 @@ if (!isset($_SESSION['confirmPassword']))
             </tr>
             <tr>
         <td>
-        <form action="registrationValidation.php" method="POST">
+        <form action="registration_validation.php" method="POST">
         <fieldset>
             <p class="subheading">REGISTRATION</p>
             <hr>

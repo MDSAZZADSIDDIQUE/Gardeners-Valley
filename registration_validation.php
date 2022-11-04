@@ -40,7 +40,7 @@ if ($emptyInput) {
         $_SESSION['unmatchedPassword'] = true;
         header('location: registration.php');
 } else {
-    $userInformationFile = fopen('user_information.php', 'a');
+    $userInformationFile = fopen('user_information.txt', 'a');
     $userInformation = $firstName."|".$lastName."|".$emailAddress."|".$password;
     fwrite($userInformationFile, $userInformation);
     header('location: home.php');
