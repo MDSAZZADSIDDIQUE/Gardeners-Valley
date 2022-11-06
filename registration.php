@@ -35,7 +35,7 @@ if (!isset($_SESSION['confirmPassword']))
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Open+Sans&display=swap" rel="stylesheet">
-    <title>Gardeners Valley</title>
+    <title>Registration</title>
 </head>
 <style>
     body {
@@ -172,6 +172,10 @@ if (!isset($_SESSION['confirmPassword']))
                         if (isset($_SESSION['emptyEmailAddress'])) {
                             echo "<p class='error_message'>Email address is empty.</p>";
                             unset($_SESSION['emptyEmailAddress']);
+                        }
+                        if (isset($_SESSION['invalidEmailAddress'])) {
+                            echo "<p class='error_message'>Email address is invalid.</p>";
+                            unset($_SESSION['invalidEmailAddress']);
                         }
                         ?>
                         <hr>

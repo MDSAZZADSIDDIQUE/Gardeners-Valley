@@ -2,8 +2,13 @@
 include_once "empty_input_validation.php";
 include_once "name_validation.php";
 include_once "password_validation.php";
+include_once "email_validation.php";
 
 session_start();
+
+if (!isset($_POST['gender'])) {
+    $_POST['gender'] = "";
+}
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -58,6 +63,10 @@ if (checkName($lastName)) {
     $_SESSION['invalidLastName'] = true;
     $invalidInput = true;
 }
+if (checkEmail($emailAddress)) {
+    $_SESSION['invalidEmailAddress'] = true;
+    $invalidInput = true;
+}
 if (checkPassword($password)) {
     $_SESSION['weakPassword'] = true;
     $invalidInput = true;
@@ -68,9 +77,22 @@ if ($password != $confirmPassword) {
 }
 if ($invalidInput) {
     $invalidInput = true;
+    header('location: registration.php');
 } else {
     $userInformationFile = fopen('user_information.txt', 'a');
-    $userInformation = $firstName."|".$lastName."|".$gender."|".$dateOfBirth."|".$emailAddress."|".$password;
+    $usersCountFile = fopen('users_count.txt', 'r');
+    $usersCount;
+    $usersCount = fgets($usersCountFile);
+    echo 'usersCount: '.$usersCount;
+    fclose($usersCountFile);
+    $usersCountFile = fopen('users_count.txt', 'w');
+    (int) ++$usersCount;
+    $_SESSION['usersCount'] = $usersCount;
+    fwrite($usersCountFile, $usersCount);
+    fclose($usersCountFile);
+    $userInformation = $usersCount."|".$firstName."|".$lastName."|".$gender."|".$dateOfBirth."|".$emailAddress."|".$password;
     fwrite($userInformationFile, $userInformation);
-    header('location: home.php');
+    setcookie('emailAddress', $emailAddress, time() + 3600, '/');
+    setcookie('password', $password, time() + 3600, '/');
+    header('location: role.php');
 }

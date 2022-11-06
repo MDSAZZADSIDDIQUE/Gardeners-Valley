@@ -1,3 +1,7 @@
+<?php
+include_once "get_time.php";
+?>
+
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +46,7 @@
         padding-left: 10px;
         text-align: left;
         width: 30vw;
+        vertical-align: text-top;
     }
     .dashboard {
         width: 70vw;
@@ -57,10 +62,18 @@
         border: 5px solid #000000;
     }
     .blog {
-        text-align: center;
+        text-align: left;
         background-color: black;
         display: inline-block;
         font-family: 'Open Sans', sans-serif;
+        padding-left: 25px;
+        padding-right: 25px;
+        border: 5px solid;
+    }
+    .blog_header {
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
     }
 </style>
 <body>
@@ -101,9 +114,12 @@
                                 echo "<tr><td class='blog'>";
                                 $blogs = fgets($blogsFile);
                                 $blog = explode('|', $blogs);
+                                echo "<p class='blog_header'>{$blog[0]}</p>";
                                 echo "<img src='{$blog[3]}'>";
-                                echo "<p>{$blog[0]}</p>";
-                                echo "<p>{$blog[1]}</p>";
+                                echo "<p>Author: {$blog[1]}</p>";
+                                echo "<p>";
+                                echo getTime();
+                                echo "</p>";
                                 echo "<p>{$blog[2]}</p>";
                                 echo "</tr></td>";
                             }

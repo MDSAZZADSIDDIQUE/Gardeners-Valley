@@ -114,6 +114,10 @@
                         <hr>
                         <input type="text" name="availability" id="availability">
                         <hr>
+                        <label for="description" class="label">Description : </label>
+                        <hr>
+                        <input type="text" name="description" id="description">
+                        <hr>
                         <label for="treeImage" class="label">Image: </label>
                         <hr>
                         <input type="file" name="treeImage" id="tree_image">

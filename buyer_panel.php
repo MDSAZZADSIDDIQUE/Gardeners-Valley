@@ -62,23 +62,15 @@
             <td class="side_panel">
                 <p class="dashboard_header">Dashboard</p>
                 <hr>
-                <a href="view_products.php">Shop</a>
-                <br>
+                <a href="shop.php">Shop</a>
                 <hr>
-                <a href="add_products.php">Add products</a>
-                <br>
+                <a href="cart.php">Cart</a>
                 <hr>
-                <a href="">Edit products</a>
-                <br>
+                <a href="blogs.php">Blogs</a>
                 <hr>
-                <a href="">Remove products</a>
-                <br>
+                <a href="publish_blogs.php">Publish blogs</a>
                 <hr>
-                <a href="">Orders</a>
-                <br>
-                <hr>
-                <a href="">Chat</a>
-                <hr>
+                <head></head>
             </td>
             <td class="dashboard">
             </td>

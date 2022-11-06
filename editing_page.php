@@ -5,7 +5,10 @@ $editUser = $userId[1];
 $_SESSION['editUser'] = $editUser;
 $firstName;
 $lastName;
+$gender;
+$dateOfBirth;
 $emailAddress;
+$role;
 
 $userInformationFile = fopen('user_information.txt', 'r');
 for ($i = 1; !feof($userInformationFile); $i++)
@@ -14,12 +17,14 @@ for ($i = 1; !feof($userInformationFile); $i++)
     $userInformation = explode('|', $usersInformation);
     if ($i == $editUser)
     {
-        $firstName = $userInformation[0];
-        $lastName = $userInformation[1];
-        $emailAddress = $userInformation[2];
+        $firstName = $userInformation[1];
+        $lastName = $userInformation[2];
+        $gender = $userInformation[3];
+        $dateOfBirth = $userInformation[4];
+        $emailAddress = $userInformation[5];
+        $role = $userInformation[7];
     }
 }
-
 ?>
 <html>
 <head>
@@ -132,17 +137,26 @@ for ($i = 1; !feof($userInformationFile); $i++)
                         <label for="edit.php" class="label">First name</label>
                         <hr>
                         <input type="text" name="firstName" id="first_name" value=<?php echo $firstName ?>>
-                        <br>
                         <hr>
                         <label for="last_name" class="label">Last name</label>
                         <hr>
                         <input type="text" name="lastName" id="last_name" value=<?php echo $lastName ?>>
-                        <br>
+                        <hr>
+                        <label for="gender" class="label">Gender</label>
+                        <hr>
+                        <input type="text" name="gender" id="gender" value=<?php echo $gender ?>>
+                        <hr>
+                        <hr><label for="date_of_birth" class="label">Date of birth</label>
+                        <hr>
+                        <input type="text" name="dateOfBirth" id="date_of_birth" value=<?php echo $dateOfBirth ?>>
                         <hr>
                         <label for="emailAddress" class="label">Email Address</label>
                         <hr>
                         <input type="email" name="emailAddress" id="email_address" value=<?php echo $emailAddress ?>>
-                        <br>
+                        <hr>
+                        <label for="role" class="label">Role</label>
+                        <hr>
+                        <input type="text" name="role" id="role" value=<?php echo $role ?>>
                         <hr>
                         <input type="submit" value="Confirm edit">
                     </fieldset>

@@ -68,7 +68,8 @@
     }
 
     input[type="submit"] {
-        width: 100%;
+        margin-top: 10px;
+        width: 170px;
         font-size: 30px;
         border: 5px solid greenyellow;
         color: greenyellow;
@@ -111,27 +112,27 @@
             </td>
             <td class="dashboard">
                 <table>
-
-
                 <?php
 $productInformationFile = fopen('product_information.txt', 'r');
 for ($i = 1;!feof($productInformationFile); $i++) {
     $productsInformation = fgets($productInformationFile);
     $productInformation = explode('|', $productsInformation);
     if ($i % 2 != 0) {
-        echo "<tr><td><div class='product'><img src='{$productInformation[3]}' alt=''>";
-        echo "<p>{$productInformation[0]}</p><hr>";
+        echo "<tr><form action='cart.php' method='POST'><td><div class='product'><img src='{$productInformation[4]}' alt=''>";
         echo "<p>{$productInformation[1]}</p><hr>";
-        echo "<p>{$productInformation[2]}</p>";
-        echo "<input type='submit' value='Add to cart'>
-                        </div></td>";
+        echo "<p>{$productInformation[2]} ৳</p><hr>";
+        echo "<p>{$productInformation[3]}</p><hr>";
+        echo "<a href='description.php'>Description</a>";
+        echo "<hr><input type='submit' name='addToCart' value='Add to cart {$i}'>
+                        </div></td></form>";
     } else {
-        echo "<td><div class='product'><img src='{$productInformation[3]}' alt=''>";
-        echo "<p>{$productInformation[0]}</p><hr>";
+        echo "<form action='cart.php' method='POST'><td><div class='product'><img src='{$productInformation[4]}' alt=''>";
         echo "<p>{$productInformation[1]}</p><hr>";
-        echo "<p>{$productInformation[2]}</p>";
-        echo "<input type='submit' value='Add to cart'>
-                        </div></td>";
+        echo "<p>{$productInformation[2]} ৳</p><hr>";
+        echo "<p>{$productInformation[3]}</p><hr>";
+        echo "<a href='description.php'>Description</a>";
+        echo "<hr><input type='submit' name='addToCart' value='Add to cart {$i}'>
+                        </div></td></form>";
         echo "</tr>";
     }
 }

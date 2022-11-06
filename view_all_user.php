@@ -109,7 +109,7 @@ session_start();
                 <a href="view_all_user.php" class="active">View all user</a>
                 <br>
                 <hr>
-                <a href="">View all buyer</a>
+                <a href="view_all_buyer.php">View all buyer</a>
                 <br>
                 <hr>
                 <a href="">View all seller</a>
@@ -128,20 +128,25 @@ session_start();
                 <table class="dashboard_table">
                     <tr>
                         <th class="dashboard_table_data">User ID</th>
-                        <th class="dashboard_table_data">First Name</th>
-                        <th class="dashboard_table_data">Last Name</th>
+                        <th class="dashboard_table_data">First name</th>
+                        <th class="dashboard_table_data">Last name</th>
+                        <th class="dashboard_table_data">Gender</th>
+                        <th class="dashboard_table_data">Date of birth</th>
                         <th class="dashboard_table_data">Email Address</th>
+                        <th class="dashboard_table_data">Role</th>
                     </tr>
                     <?php
                     $userInformationFile = fopen('user_information.txt', 'r');
                     for ($i = 1; !feof($userInformationFile); $i++)
                     {
                         echo "<tr>";
-                        echo "<td class='dashboard_table_data'>{$i}</td>";
                         $usersInformation = fgets($userInformationFile);
                         $userInformation = explode('|', $usersInformation);
-                        for ($j = 0; $j < count($userInformation) - 1; $j++)
+                        for ($j = 0; $j < count($userInformation); $j++)
                         {
+                            if ($j == 6) {
+                                continue;
+                            }
                             echo "<td class='dashboard_table_data'>{$userInformation[$j]}</td>";
                         }
                         ?>

@@ -3,7 +3,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Open+Sans&display=swap" rel="stylesheet">
-    <title>Admin panel</title>
+    <title>Seller</title>
 </head>
 <style>
     body {
@@ -41,6 +41,7 @@
         padding-left: 10px;
         text-align: left;
         width: 30vw;
+        vertical-align: text-top;
     }
     .dashboard {
         width: 70vw;
@@ -48,6 +49,7 @@
     .dashboard_header {
         font-family: 'Monoton', cursive;
         font-size: 50px;
+        margin-top: 50px;
         vertical-align: top;
     }
 </style>
@@ -62,22 +64,27 @@
             <td class="side_panel">
                 <p class="dashboard_header">Dashboard</p>
                 <hr>
-                <a href="view_products.php">View Products</a>
-                <br>
+                <a href="seller_shop.php">Shop</a>
                 <hr>
-                <a href="add_products.php">Add products</a>
-                <br>
+                <a href="seller_view_products.php">View products</a>
                 <hr>
-                <a href="">Edit products</a>
-                <br>
+                <a href="add_product.php">Add product</a>
                 <hr>
-                <a href="">Remove products</a>
-                <br>
+                <a href="orders.php">Orders</a>
                 <hr>
-                <a href="">Orders</a>
-                <br>
+                <a href="newsfeed.php">Newsfeed</a>
                 <hr>
-                <a href="">Chat</a>
+                <a href="post.php">Post</a>
+                <hr>
+                <a href="blogs.php">Blog</a>
+                <hr>
+                <a href="publish_blogs.php">Publish Blog</a>
+                <hr>
+                <a href="chat">Chat</a>
+                <hr>
+                <a href="edit_seller_information.php">Edit personal information</a>
+                <hr>
+                <a href="log_out.php">Log out</a>
                 <hr>
             </td>
             <td class="dashboard">

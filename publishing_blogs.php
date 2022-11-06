@@ -8,6 +8,6 @@ $destination = "images/".$_FILES['image']['name'];
 move_uploaded_file($source, $destination);
 
 $blogsFile = fopen('blogs.txt', 'a');
-$blogs = $title."|".$author."|".$blog."|".$destination;
+$blogs = "\n".$title."|".$author."|".$blog."|".$destination;
 fwrite($blogsFile, $blogs);
 header('Location: blogs.php');

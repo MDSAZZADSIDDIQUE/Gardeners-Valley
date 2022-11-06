@@ -7,7 +7,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Open+Sans&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Log in</title>
 </head>
 <style>
     body {
@@ -82,19 +82,36 @@ session_start();
                         <label for="email_address">Email address: </label>
                         <hr>
                         <input type="email" name="emailAddress" id="email_address">
+                        <?php
+                        if (isset($_SESSION['emptyEmailAddress'])) {
+                            echo "<p class='error_message'>Email address is empty.</p>";
+                            unset($_SESSION['emptyEmailAddress']);
+                        } else if (isset($_SESSION['invalidEmailAddress'])) {
+                            echo "<p class='error_message'>Email address is invalid.</p>";
+                            unset($_SESSION['invalidEmailAddress']);
+                        }
+                        ?>
                         <hr>
                         <label for="password">Password: </label>
                         <hr>
                         <input type="password" name="password" id="password" >
+                        <?php
+                        if (isset($_SESSION['emptyPassword'])) {
+                            echo "<p class='error_message'>Password is empty.</p>";
+                            unset($_SESSION['emptyPassword']);
+                        } else if (isset($_SESSION['weakPassword'])) {
+                            echo "<p class='error_message'>Password must be 6 characters long.</p>";
+                            unset($_SESSION['weakPassword']);
+                        } else if (isset($_SESSION['unmatchedInformations'])) {
+                            echo "<p class='error_message'>Email address or password does not match.</p>";
+                            unset($_SESSION['unmatchedInformations']);
+                        }
+                        ?>
                         <hr>
                         <input type="checkbox" name="showPassword" id="show_password" onclick="myFunction()">
                         <label for="show_password" class="show_password">Show password</label>
                         <hr>
-                        <?php if (isset($_SESSION['unmatchedInformations'])) {
-                            echo "<p class='error_message'>Email address or password does not match.</p>";
-                            unset($_SESSION['unmatchedInformations']);
-                        } ?>
-                        <a href="" class="forgottenPassword">Forgotten password?</a>
+                        <a href="forgot_password.php" class="forgottenPassword">Forgotten password?</a>
                         <hr>
                         <input type="submit" value="Log in">
                     </fieldset>
