@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
+<?php
 include_once "get_time.php";
 ?>
 

@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
+<?php
 session_start();
 $userId = explode('Delete ', $_POST['delete']);
 $editUser = $userId[1];

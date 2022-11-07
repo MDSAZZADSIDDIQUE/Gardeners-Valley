@@ -1,3 +1,9 @@
+<?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,22 +85,25 @@
             <td class="side_panel">
                 <p class="dashboard_header">Dashboard</p>
                 <hr>
-                <a href="view_all_user.php">View all user</a>
-                <br>
+                <a href="seller_shop.php">Shop</a>
                 <hr>
-                <a href="">View all buyer</a>
-                <br>
+                <a href="seller_view_products.php">View products</a>
                 <hr>
-                <a href="">View all seller</a>
-                <br>
+                <a href="add_product.php">Add product</a>
                 <hr>
-                <a href="">View all expert</a>
-                <br>
+                <a href="orders.php">Orders</a>
                 <hr>
-                <a href="">View all delivery man</a>
-                <br>
+                <a href="seller_newsfeed.php">Newsfeed</a>
                 <hr>
-                <a href="">Chat</a>
+                <a href="seller_post.php">Post</a>
+                <hr>
+                <a href="seller_blogs.php">Blog</a>
+                <hr>
+                <a href="publish_seller_blogs.php">Publish Blog</a>
+                <hr>
+                <a href="edit_seller_information.php">Edit personal information</a>
+                <hr>
+                <a href="log_out.php">Log out</a>
                 <hr>
             </td>
             <td class="dashboard">

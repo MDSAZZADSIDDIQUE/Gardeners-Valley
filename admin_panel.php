@@ -1,3 +1,10 @@
+<?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
+
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +81,7 @@
                 <hr>
                 <a href="view_all_delivery_man.php">View all Delivery man</a>
                 <hr>
-                <a href="">Chat</a>
+                <a href="log_out.php">Log out</a>
                 <hr>
             </td>
             <td class="dashboard">

@@ -172,10 +172,12 @@ if (!isset($_SESSION['confirmPassword']))
                         if (isset($_SESSION['emptyEmailAddress'])) {
                             echo "<p class='error_message'>Email address is empty.</p>";
                             unset($_SESSION['emptyEmailAddress']);
-                        }
-                        if (isset($_SESSION['invalidEmailAddress'])) {
+                        } else if (isset($_SESSION['invalidEmailAddress'])) {
                             echo "<p class='error_message'>Email address is invalid.</p>";
                             unset($_SESSION['invalidEmailAddress']);
+                        } else if (isset($_SESSION['usedEmail'])) {
+                            echo "<p class='error_message'>Email address is already in use.</p>";
+                            unset($_SESSION['usedEmail']);
                         }
                         ?>
                         <hr>
@@ -190,7 +192,7 @@ if (!isset($_SESSION['confirmPassword']))
                             echo "<p class='error_message'>Password is empty.</p>";
                             unset($_SESSION['emptyPassword']);
                         }
-                        if (isset($_SESSION['weakPassword'])) {
+                        else if (isset($_SESSION['weakPassword'])) {
                             echo "<p class='error_message'>Password must be 6 characters long.</p>";
                             unset($_SESSION['weakPassword']);
                         }
@@ -204,7 +206,7 @@ if (!isset($_SESSION['confirmPassword']))
                             echo "<p class='error_message'>Confirm password is empty.</p>";
                             unset($_SESSION['emptyConfirmPassword']);
                         }
-                        if (isset($_SESSION['unmatchedPassword'])) {
+                        else if (isset($_SESSION['unmatchedPassword'])) {
                             echo "<p class='error_message'>Password does not match</p>";
                             unset($_SESSION['unmatchedPassword']);
                         }

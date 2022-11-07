@@ -7,11 +7,18 @@ fwrite($userInformationFile, $userRole);
 fclose($userInformationFile);
 
 $userInformationFile = fopen('user_information.txt', 'r');
-$usersInformation;
-for ($i = 1; !feof($userInformationFile); $i++)
-{
+$usersInformation = "";
+while (!feof($userInformationFile)) {
     $usersInformation = fgets($userInformationFile);
-    if ($i == $_SESSION['usersCount']) {
+    $userInformation = explode("|", $usersInformation);
+    for ($i = 0; $i < count($userInformation); $i++)
+    {
+        if ($i == 0) {
+            $temporaryUserID = $userInformation[$i];
+            break;
+        }
+    }
+    if ($temporaryUserID == $_SESSION['usersCount']) {
         break;
     }
 }

@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
+<?php
 session_start();
 $addToCart = $_POST['addToCart'];
 $productsID = explode('Add to cart', $addToCart);
@@ -122,15 +128,22 @@ $deliveryAddress;
             <td class="side_panel">
                 <p class="dashboard_header">Dashboard</p>
                 <hr>
-                <a href="shop.php">Shop</a>
+                <a href="buyer_shop.php">Shop</a>
                 <hr>
                 <a href="cart.php">Cart</a>
                 <hr>
-                <a href="blogs.php">Blogs</a>
+                <a href="buyer_blogs.php">Blogs</a>
                 <hr>
-                <a href="publish_blogs.php">Publish blogs</a>
+                <a href="publish_buyer_blogs.php">Publish blogs</a>
                 <hr>
-                <head></head>
+                <a href="buyer_newsfeed.php">Newsfeed</a>
+                <hr>
+                <a href="buyer_post.php">Post</a>
+                <hr>
+                <a href="chat_with_expert.php">Chat</a>
+                <hr>
+                <a href="log_out.php">Log out</a>
+                <hr>
             </td>
             <td class="dashboard">
             <p class="subheader">Shopping Cart</p>

@@ -1,0 +1,4 @@
+3|Md.|Sazzad|Male|1999-09-14|likhonsiddique01@gmail.com|123456|Buyer
+6|Konak|Mazumder|Male|1999-09-14|konakmozumder@gmail.com|123456|Buyer
+7|Rezuan|Islam|Male|2022-11-07|rezuanislam@gmail.com|123456|Buyer
+27|Sazzad|Siddique|Male|1999-09-14|shahriarkabir8888@gmail.com|123456|Buyer

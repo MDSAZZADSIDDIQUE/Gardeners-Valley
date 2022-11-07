@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
+<?php
 session_start();
 $productNumber = explode('Edit ', $_POST['edit']);
 $editProduct = $productNumber[1];

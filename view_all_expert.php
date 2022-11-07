@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
+<?php
 session_start();
 ?>
 
@@ -106,22 +112,19 @@ session_start();
             <td class="side_panel">
                 <p class="dashboard_header">Dashboard</p>
                 <hr>
-                <a href="view_all_user.php" class="active">View all user</a>
-                <br>
+                <a href="view_all_user.php">View all user</a>
+                <hr>
+                <a href="view_all_admin.php">View all admin</a>
                 <hr>
                 <a href="view_all_buyer.php">View all buyer</a>
-                <br>
                 <hr>
-                <a href="">View all seller</a>
-                <br>
+                <a href="view_all_seller.php">View all seller</a>
                 <hr>
-                <a href="">View all expert</a>
-                <br>
+                <a href="view_all_expert.php">View all Expert</a>
                 <hr>
-                <a href="">View all delivery man</a>
-                <br>
+                <a href="view_all_delivery_man.php">View all Delivery man</a>
                 <hr>
-                <a href="">Chat</a>
+                <a href="log_out.php">Log out</a>
                 <hr>
             </td>
             <td class="dashboard">

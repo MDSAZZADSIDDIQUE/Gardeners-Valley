@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
+<?php
 $productID = $_POST['productID'];
 $name = $_POST['name'];
 $price = $_POST['price'];

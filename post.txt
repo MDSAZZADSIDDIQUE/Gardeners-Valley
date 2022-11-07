@@ -1,1 +1,4 @@
-Hello|images/flower-adenium-bonayon-500x539.jpg
+My first flower|images/flower-adenium-bonayon-500x539.jpg
+This is so beautiful.|images/hibiscus-red-500x539.jpg
+My first Fruit.|images/bonayon-lemon-bangladesh-500x539.jpg
+Hello|images/2.jpg

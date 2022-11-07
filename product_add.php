@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
+<?php
 $source = $_FILES['treeImage']['tmp_name'];
 $destination = "images/".$_FILES['treeImage']['name'];
 move_uploaded_file($source, $destination);

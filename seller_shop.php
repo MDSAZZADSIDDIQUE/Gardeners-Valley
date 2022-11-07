@@ -1,4 +1,10 @@
 <?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
+<?php
 session_start();
 $productCountFile = fopen('product_count.txt', 'r');
 $productID = fgets($productCountFile);
@@ -141,7 +147,8 @@ for ($i = 1;!feof($productInformationFile) && $i < $_SESSION['productCount']; $i
         echo "<hr><input type='submit' name='addToCart' value='Add to cart {$i}'>
                         </div></td></form>";
     } else {
-        echo "<form action='cart.php' method='POST'><td><div class='product'><img src='{$productInformation[4]}' alt=''>";
+        echo "<form action='cart.php' method='POST'>";
+        echo "<td><div class='product'><img src='{$productInformation[4]}' alt=''>";
         echo "<p>{$productInformation[0]}</p><hr>";
         echo "<p>{$productInformation[1]} ৳</p><hr>";
         echo "<p>{$productInformation[2]}</p><hr>";

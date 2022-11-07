@@ -1,0 +1,2 @@
+2|Sazzad|Siddique|Male|1999-09-14|mdsazzadsiddique0@gmail.com|123456|Seller|Bonayon Self Production|Savar & mymensingh
+4|Priom|deb|Male|2000-05-27|deb@gmail.com|debdeb|Seller|Bonayon Self Production|Savar & mymensingh

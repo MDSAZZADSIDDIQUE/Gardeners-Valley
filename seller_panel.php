@@ -1,3 +1,31 @@
+<?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php');
+}
+?>
+<?php
+$emailAddress = $_COOKIE['emailAddress'];
+$sellerInformationFile = fopen('seller_information.txt', 'r');
+
+while (!feof($sellerInformationFile)) {
+    $sellersInformation = fgets($sellerInformationFile);
+    if ($sellersInformation == "")
+        {
+            break;
+        }
+    $sellerInformation = explode("|", $sellersInformation);
+    for ($i = 0; $i < count($sellerInformation); $i++) {
+        if($sellerInformation[$i] == $emailAddress) {
+            if ($i == 8) {
+            setcookie('shop',$sellerInformation[$i], time() + 3600, '/' );
+            break;
+            }
+        }
+    }
+}
+?>
+
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,15 +100,13 @@
                 <hr>
                 <a href="orders.php">Orders</a>
                 <hr>
-                <a href="newsfeed.php">Newsfeed</a>
+                <a href="seller_newsfeed.php">Newsfeed</a>
                 <hr>
-                <a href="post.php">Post</a>
+                <a href="seller_post.php">Post</a>
                 <hr>
-                <a href="blogs.php">Blog</a>
+                <a href="seller_blogs.php">Blog</a>
                 <hr>
-                <a href="publish_blogs.php">Publish Blog</a>
-                <hr>
-                <a href="chat">Chat</a>
+                <a href="publish_seller_blogs.php">Publish Blog</a>
                 <hr>
                 <a href="edit_seller_information.php">Edit personal information</a>
                 <hr>

@@ -1,3 +1,9 @@
+<?php
+if (!isset($_COOKIE['authorized']))
+{
+    header('location: index.php?error_message=UnauthorizedAccess');
+}
+?>
 <html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">

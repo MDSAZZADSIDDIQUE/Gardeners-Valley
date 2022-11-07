@@ -27,6 +27,15 @@ $_SESSION['emailAddress'] = $emailAddress;
 $_SESSION['password'] = $password;
 $_SESSION['confirmPassword'] = $confirmPassword;
 
+$userInformationFile = fopen('user_information.txt', 'r');
+while (!feof($userInformationFile)) {
+    $usersInformation = fgets($userInformationFile);
+    $userInformation = explode ('|', $usersInformation);
+    if ($userInformation[5] == $emailAddress) {
+        $_SESSION['usedEmail'] = true;
+        $invalidInput = true;
+    }
+}
 if (checkInput($firstName)) {
     $_SESSION['emptyFirstName'] = true;
     $invalidInput = true;
@@ -77,7 +86,7 @@ if ($password != $confirmPassword) {
 }
 if ($invalidInput) {
     $invalidInput = true;
-    header('location: registration.php');
+    header('location: registration.php?error_message=invalid_input');
 } else {
     $userInformationFile = fopen('user_information.txt', 'a');
     $usersCountFile = fopen('users_count.txt', 'r');
@@ -94,5 +103,6 @@ if ($invalidInput) {
     fwrite($userInformationFile, $userInformation);
     setcookie('emailAddress', $emailAddress, time() + 3600, '/');
     setcookie('password', $password, time() + 3600, '/');
+    setcookie('authorized', $password, time() + 3600, '/');
     header('location: role.php');
 }
